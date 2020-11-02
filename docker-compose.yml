@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  streamlit-plus:
+    container_name: streamlit-plus
+    image: intelligentdesigns/streamlit-plus:latest
+    restart: unless-stopped
+# Uncomment and edit volumes to mount your own project
+#    volumes:
+#      - /home/user/src:/app
+# Uncomment this line and add your own custom index as needed (e.g., for injecting Google Analytics or other tracking)
+#      - /home/user/custom/index.html:/root/.local/lib/python3.8/site-packages/streamlit/static/index.html
+    ports:
+      - 8080:8080
+    networks:
+      - default
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - STREAMLIT_SERVER_PORT=8080 #This needs to match exposed port in Dockerfile
+    # You may need to uncomment these for some use cases
+    # - enableCORS=false
+    # - enableXsrfProtection=false
+    command: streamlit run main.py
