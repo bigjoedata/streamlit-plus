@@ -29,4 +29,12 @@ Key packages included:
 
 And more. See requirements.txt for versions and full list of included packages. 
 
+To roll your own image:
+
+    git clone https://github.com/bigjoedata/streamlit-plus
+    cd streamlit-plus
+    nano requirements.txt # Change dependencies as needed
+    nano Dockerfile # Change options as needed
+    docker build -t .
+
 Note: I have built this as a multi-stage build to try to keep the size down, however it is still ~256MB compressed / 950MB uncompressed. This package includes many dependencies which inflate the size. You can roll your own by editing the requirements.txt and rebuilding, but some required packages are large such as Pyarrow which is a Streamlit dependency and > 200MB alone. For additional efficiency, you may recompile many of these. The base image is not Alpine so the intrepid optimizer has many available options.
