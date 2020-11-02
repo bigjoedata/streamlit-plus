@@ -1,9 +1,9 @@
 # streamlit-plus
-A batteries included docker build based on Python 3.8 slim including [Streamlit](https://www.streamlit.io/) + Visualization Tools + Other key tools
-
 For a quickstart with a basic "Hello World" app, run the following and visit port 8080:
 
     docker run -p 8080:8080 -e STREAMLIT_SERVER_PORT=8080 --restart always intelligentdesigns/streamlit-plus:latest
+
+See an implementation of my own site running on Oracle Cloud free tier at https://partytruths.com
 
 To customize, clone this repository, and edit the docker-compose.yml to point the bind mount for /app to your own app folder. As part of the magic of Streamlit, any changes to the folder will be immedialey reflected in your Streamlit app. Example included in docker-compose.yml
 
