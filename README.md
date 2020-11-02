@@ -1,9 +1,11 @@
 # streamlit-plus
 A batteries included docker build including [Streamlit](https://www.streamlit.io/) + Visualization Tools + Other key tools
 
-For a quickstart, run:
+For a quickstart with a basic "Hello World" app, run the following and visit port 8080:
 
     docker run -p 8080:8080 -e STREAMLIT_SERVER_PORT=8080 --restart always intelligentdesigns/streamlit-plus:latest
+
+To customize, clone this repository, and edit the docker-compose.yml to point the bind mount for /app to your own app folder. Instructions included in docker-compose.yml
 
 Key packages included:
 **Viz**
