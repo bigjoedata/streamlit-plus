@@ -9,7 +9,7 @@ azure-storage-blob==12.6.0
 backcall==0.2.0
 base58==2.0.1
 beautifulsoup4==4.9.3
-bleach==3.2.1
+bleach==3.3.0
 blinker==1.4
 blis==0.7.3
 bokeh==2.2.3
