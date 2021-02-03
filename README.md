@@ -12,7 +12,6 @@ Follow the following
 
         git clone https://github.com/bigjoedata/streamlit-plus
     cd streamlit-plus
-
     nano docker-compose.yml # point the bind mount for /app to your own app folder. As part of the magic of Streamlit, any changes to the folder will be immedialey reflected in your Streamlit
     docker build -t .
     docker-compose up -d # launch in daemon (background) mode
