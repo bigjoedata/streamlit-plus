@@ -1,4 +1,8 @@
 createactivate.sh
+pushdocker.sh
+stbot_dep_upgrade_install.sh
+dep_upgrade_install.sh
+pushdocker.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

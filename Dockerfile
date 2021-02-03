@@ -4,7 +4,7 @@ ENV PATH=/root/.local:/root/.local/bin:/install:$PATH
 # Change the requirements.txt if you want to add/change tools, though I recommend against since PIP can be difficult to disentangle
 COPY requirements.txt /app/requirements.txt
 WORKDIR app
-
+RUN pip install --upgrade pip
 RUN pip install --user -r requirements.txt
 #Simple sample app is in src folder. Bind mount another folder to /app to inject your own app. It will auto 
 COPY src /app

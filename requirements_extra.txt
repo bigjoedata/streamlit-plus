@@ -22,7 +22,7 @@ catalogue==1.0.0
 catboost==0.24.3
 certifi==2020.11.8
 cffi==1.14.4
-chardet==3.0.4
+chardet
 click==7.1.2
 cloudpickle==1.6.0
 cmdstanpy==0.9.5
@@ -43,7 +43,7 @@ docker==4.4.0
 entrypoints==0.3
 enum-compat==0.0.3
 ephem==3.7.7.1
-fbprophet==0.7.1
+#fbprophet==0.7.1
 Flask==1.1.2
 Flask-Compress==1.8.0
 folium==0.11.0
