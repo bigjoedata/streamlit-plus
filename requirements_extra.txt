@@ -62,7 +62,7 @@ hiplot==0.1.19
 holidays==0.10.3
 htbuilder==0.3.0
 htmlmin==0.1.12
-httplib2==0.18.1
+httplib2==0.19.0
 idna==2.10
 ImageHash==4.2.0
 imbalanced-learn==0.7.0
