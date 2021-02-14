@@ -12,9 +12,8 @@ plotnine smart-open convertdate streamlit-vega-lite pydeck
 #Simple sample app is in src folder. Bind mount another folder to /app to inject your own app.
 COPY src /app
 
-# We are doing a 2-stage build to make it slightly more efficient
-#FROM python:3.8-slim-buster AS app
-FROM python:3.8-alpine AS app
+# We are doing a 2-stage build to make it lighter
+FROM python:3.8-slim-buster AS app
 COPY --from=builder /root/.local /root/.local
 COPY --from=builder /app/main.py /app/main.py
 ENV PATH=/root/.local:/root/.local/bin:$PATH

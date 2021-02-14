@@ -1,7 +1,7 @@
 # streamlit-plus
 A batteries included docker build including [Streamlit](https://www.streamlit.io/) + Visualization Tools + Other key tools
 
-**Update: Now lighter running using Pip dependency resolver (without requirements.txt version pinning) and final layer uses Docker Alpine Python builds. Edit Dockerfile to change back to slim if needed **
+**Update: Now lighter running using Pip dependency resolver (without requirements.txt version pinning)**
 
 For a quickstart, run:
 

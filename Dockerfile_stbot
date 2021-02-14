@@ -4,7 +4,6 @@ ENV PATH=/root/.local:/root/.local/bin:/install:$PATH
 WORKDIR app
 
 RUN pip install --upgrade pip
-#RUN pip install --user -r requirements.txt
 RUN pip install --user --find-links https://download.pytorch.org/whl/torch_stable.html torch==1.7.1+cpu
 RUN pip install --user --upgrade streamlit transformers vaderSentiment emoji_translate spacy
 RUN pip install --user --upgrade aitextgen
@@ -13,7 +12,7 @@ RUN pip install --user --upgrade aitextgen
 COPY src /app
 
 # We are doing a 2-stage build to make it slightly more efficient
-FROM python:3.8-alpine AS app
+FROM python:3.8-slim-buster AS app
 COPY --from=builder /root/.local /root/.local
 COPY --from=builder /app/main.py /app/main.py
 ENV PATH=/root/.local:/root/.local/bin:$PATH
