@@ -1,3 +1,4 @@
+./dep_upgrade_install.sh
 createactivate.sh
 pushdocker.sh
 stbot_dep_upgrade_install.sh
