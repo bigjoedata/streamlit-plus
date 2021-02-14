@@ -2,15 +2,19 @@ FROM python:3.8-slim-buster AS builder
 ENV PATH=/root/.local:/root/.local/bin:/install:$PATH
 
 # Change the requirements.txt if you want to add/change tools, though I recommend against since PIP can be difficult to disentangle
-COPY requirements.txt /app/requirements.txt
 WORKDIR app
 RUN pip install --upgrade pip
-RUN pip install --user -r requirements.txt
-#Simple sample app is in src folder. Bind mount another folder to /app to inject your own app. It will auto 
+RUN pip install --user --upgrade  streamlit matplotlib plotly seaborn \
+streamlit-embedcode streamlit-bokeh-events st-annotated-text  \
+plotnine smart-open convertdate streamlit-vega-lite pydeck
+# gspread quandl oauth2client oauthlib # Removed
+# scipy scikit-learn pandas-profiling[notebook] streamlit-pandas-profiling # moved to extra build
+#Simple sample app is in src folder. Bind mount another folder to /app to inject your own app.
 COPY src /app
 
 # We are doing a 2-stage build to make it slightly more efficient
-FROM python:3.8-slim-buster AS app
+#FROM python:3.8-slim-buster AS app
+FROM python:3.8-alpine AS app
 COPY --from=builder /root/.local /root/.local
 COPY --from=builder /app/main.py /app/main.py
 ENV PATH=/root/.local:/root/.local/bin:$PATH

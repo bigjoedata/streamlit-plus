@@ -1,20 +1,24 @@
 FROM python:3.8-buster AS builder
 ENV PATH=/root/.local:/root/.local/bin:/install:$PATH
 
-# Change the requirements.txt if you want to add/change tools, though I recommend against since PIP can be difficult to disentangle
-COPY requirements_extra.txt /app/requirements.txt
 WORKDIR app
 
 RUN pip install --upgrade pip
-#RUN pip install --user pystan
+RUN pip install --user --upgrade  streamlit matplotlib plotly seaborn \
+streamlit-embedcode streamlit-bokeh-events st-annotated-text  \
+plotnine smart-open convertdate streamlit-vega-lite pydeck \
+scikit-learn scipy pandas-profiling[notebook] streamlit-pandas-profiling \
+"spacy<3.0.0,>=2.2.0" pycaret hiplot streamlit-observable spacy-streamlit streamlit-folium texthero beautifulsoup4
+
+# gspread quandl oauth2client oauthlib # Removed
 RUN pip install --upgrade --user pystan
-RUN pip install --user -r requirements.txt
 RUN pip install --upgrade --user fbprophet
+
 #Simple sample app is in src folder. Bind mount another folder to /app to inject your own app. It will auto 
 COPY src /app
 
-# We are doing a 2-stage build to make it slightly more efficient
-FROM python:3.8-slim-buster AS app
+# We are doing a 2-stage build and Alpine to make it lighter
+FROM python:3.8-alpine AS app
 COPY --from=builder /root/.local /root/.local
 COPY --from=builder /app/main.py /app/main.py
 ENV PATH=/root/.local:/root/.local/bin:$PATH

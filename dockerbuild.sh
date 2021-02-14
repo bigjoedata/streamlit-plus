@@ -1,4 +1,7 @@
 #!/bin/sh
+echo Build light image
+docker build -f Dockerfile_minimal -t intelligentdesigns/streamlit-plus:minimal-latest .
+
 echo Build Stbot which includes Pytorch - CPU only, will need to alter requirements to use GPU
 docker build -f Dockerfile_stbot -t intelligentdesigns/streamlit-plus:stbot-latest .
 

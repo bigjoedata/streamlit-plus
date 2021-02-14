@@ -1,6 +1,8 @@
 # streamlit-plus
 A batteries included docker build including [Streamlit](https://www.streamlit.io/) + Visualization Tools + Other key tools
 
+**Update: Now lighter running using Pip dependency resolver (without requirements.txt version pinning) and final layer uses Docker Alpine Python builds. Edit Dockerfile to change back to slim if needed **
+
 For a quickstart, run:
 
     docker run -p 8080:8080 -e STREAMLIT_SERVER_PORT=8080 --restart always intelligentdesigns/streamlit-plus:latest
@@ -10,25 +12,22 @@ Install [Docker Compose](https://docs.docker.com/compose/install/)
 
 Follow the following
 
-        git clone https://github.com/bigjoedata/streamlit-plus
+    git clone https://github.com/bigjoedata/streamlit-plus
     cd streamlit-plus
     nano docker-compose.yml # point the bind mount for /app to your own app folder. As part of the magic of Streamlit, any changes to the folder will be immedialey reflected in your Streamlit
-    docker build -t .
     docker-compose up -d # launch in daemon (background) mode
 
 To build your own, follow the above directions.
 
-    nano requirements.txt # Change dependencies as needed. You can also change the requirements_extra.txt or requirements_stbot.txt files for the other versions
-    nano Dockerfile # Change options if needed. Use Dockerfile_extra or Dockerfile_stbot depending on what you edited above
+    nano Dockerfile # Change options if needed. Use Dockerfile_minimal, Dockerfile_extra or Dockerfile_stbot depending on what you edited above
     docker build -f Dockerfile -t streamlit-plus:latest . # Build the Dockerfile you edited above and change tag name similarly
-
 
 Key packages include:
 **Streamlit Components**
-- streamlit-pandas-profiling
 - streamlit-embedcode
 - streamlit-bokeh-events
 - st-annotated-text
+- Streamlit-vega-lite
 
 **Viz**
 - [Streamlit](https://www.streamlit.io/)
@@ -38,23 +37,20 @@ Key packages include:
 - Seaborn
 - Matplotlib
 - Plotnine
+- Pydeck
 
 **Utils**
 - Numpy
 - Pandas
-- SciKitLearn
-- Oauthlib
-- Quandl
 - Pillow
 - Fastcluster
-- Gspread
-- Pandas Profiling & streamlit-pandas-profiling
-- streamlit-embedcode
 
 **The Container Tagged "Extra" includes:**
+- SciKitLearn
+- Scipy
+- streamlit-pandas-profiling (and Pandas Profiling)
 - Pycaret
 - Hiplot
-- Streamlit-vega-lite
 - Streamlit-observable
 - Spacy & Spacy-streamlit
 - Streamlit-folium
@@ -65,6 +61,12 @@ Key packages include:
 - [Transformers](https://github.com/huggingface/transformers)
 - [AITextgen](https://github.com/minimaxir/aitextgen)  
 
-And more. See requirements for versions and full list of included packages.
+**The Container Tagged "minimal" only includes Streamlit**
+
+**Removed in latest build**
+- Oauthlib
+- Quandl
+- Gspread
+And more. See Dockerfiles for list of included packages, which will include dependencies..
 
 Note: I have built this as a multi-stage build to try to keep the size down, however it is still ~256MB compressed / 950MB uncompressed. This package includes many dependencies which inflate the size. You can roll your own by editing the requirements.txt and rebuilding, but some required packages are large such as Pyarrow which is a Streamlit dependency and > 200MB alone. 

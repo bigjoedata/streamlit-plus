@@ -3,6 +3,8 @@ pushdocker.sh
 stbot_dep_upgrade_install.sh
 dep_upgrade_install.sh
 pushdocker.sh
+.gitignore
+backups/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
